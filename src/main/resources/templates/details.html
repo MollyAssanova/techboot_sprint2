@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+    <head th:insert="head.html">
+    </head>
+    <body>
+    <div class="container-fluid">
+        <div th:insert="navbar.html">
+        </div>
+    </div>
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-6 mx-auto">
+                    <form action="/save-student" method="post" th:if="${student!=null}">
+                        <div class="row">
+                            <div class="col-12">
+                                <label>Name: </label>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-12">
+                                <input type="text" name="name" placeholder="Enter name of student" required th:value="${student.name}">
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-12">
+                                <label>Surname: </label>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-12">
+                                <input type="text" name="surname" placeholder="Enter surname" required th:value="${student.surname}">
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-12">
+                                <label>Exam: </label>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-12">
+                                <input type="number" name="exam" placeholder="exam" required th:value="${student.exam}">
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-12">
+                                <button class="btn btn-success">SAVE</button>
+                            </div>
+                        </div>
+                    </form>
+                    <h4 th:if="${student==null}" class="text-center">
+                        STUDENT NOT FOUND
+                    </h4>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>
