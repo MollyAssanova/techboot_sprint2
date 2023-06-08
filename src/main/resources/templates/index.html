@@ -1,47 +1,18 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th = "http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Index</title>
-    <link rel="stylesheet" type="text/css" th:href="@{'/css/bootstrap.min.css'}">
-    <script type="text/javascript" th:src="@{'/js/bootstrap.bundle.js'}"></script>
-</head>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"  layout:decorate="main_layout.html">
 <body>
-
-<div class="container-fluid">
-    <div th:insert="navbar.html">
-    </div>
-</div>
-    <div class="container mt-3">
-        <div class="row">
-            <div class="col-12">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>NAME</th>
-                            <th>SURNAME</th>
-                            <th>EXAM</th>
-                            <th>MARK</th>
-                            <th style="width: 10%">Details</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="stud : ${student}">
-                            <td th:text="${stud.id}"></td>
-                            <td th:text="${stud.name}"></td>
-                            <td th:text="${stud.surname}"></td>
-                            <td th:text="${stud.exam}"></td>
-                            <td th:style="(${stud.mark == 'F'} ? 'color: red;' : '')" th:text="${stud.mark}"></td>
-
-                            <td>
-                                <a th:href="@{'/student-details?studentId=' + ${stud.id}}" class="btn btn-primary btn-sm">Details</a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+<div layout:fragment="siteContent"><br> <br>
+    <div th:each="zayav: ${zayavky}">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Заявка от <b th:text="${zayav.userName}"></b></h5>
+                <h6 class="card-subtitle mb-2 text-muted">Курс <b th:text="${zayav.courseName}"></b></h6>
+                <p class="card-text"><b th:text="${zayav.commentary}"></b></p>
+                <h6 class="card-title">Тел:<b th:text="${zayav.phone}"></b></h6>
+                <a th:href="@{'/application-details?id=' + ${zayav.id}}" class="card-link">Подробнее</a>
             </div>
         </div>
     </div>
+</div>
 </body>
 </html>

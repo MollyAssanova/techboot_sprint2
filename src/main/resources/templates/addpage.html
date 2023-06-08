@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"  layout:decorate="main_layout.html">
+
+<div layout:fragment="siteContent">
+    <form action="/add-zayavky" method="post">
+        <div class="row">
+            <div class="col-12">
+                <label>Name:</label>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-12">
+                <input type="text" name="userName" class="form-control" required>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-12">
+                <label>Course:</label>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-12">
+                <input type="text" name="courseName" class="form-control" required>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-12">
+                <label>Commentary:</label>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-12">
+                <textarea name="commentary" cols="30" rows="10" required class="form-control"></textarea>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-12">
+                <label>Phone:</label>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-12">
+                <input type="text" name="phone" class="form-control" required>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-12">
+                <button class="btn btn-success">Add applicaton</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+</html>

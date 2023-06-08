@@ -1,58 +1,82 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th = "http://www.thymeleaf.org">
-    <head th:insert="head.html">
-    </head>
-    <body>
-    <div class="container-fluid">
-        <div th:insert="navbar.html">
-        </div>
-    </div>
-        <div class="container mt-5">
+<html lang="en" xmlns:th = "http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"  layout:decorate="main_layout.html">
+
+    <div layout:fragment="siteContent">
+        <form action="/save-zayavky" method="post" th:if="${zayavky!=null}">
+            <input type="hidden" name="id" th:value="${zayavky.id}">
             <div class="row">
-                <div class="col-6 mx-auto">
-                    <form action="/save-student" method="post" th:if="${student!=null}">
-                        <div class="row">
-                            <div class="col-12">
-                                <label>Name: </label>
-                            </div>
-                        </div>
-                        <div class="row mt-2">
-                            <div class="col-12">
-                                <input type="text" name="name" placeholder="Enter name of student" required th:value="${student.name}">
-                            </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-12">
-                                <label>Surname: </label>
-                            </div>
-                        </div>
-                        <div class="row mt-2">
-                            <div class="col-12">
-                                <input type="text" name="surname" placeholder="Enter surname" required th:value="${student.surname}">
-                            </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-12">
-                                <label>Exam: </label>
-                            </div>
-                        </div>
-                        <div class="row mt-2">
-                            <div class="col-12">
-                                <input type="number" name="exam" placeholder="exam" required th:value="${student.exam}">
-                            </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-12">
-                                <button class="btn btn-success">SAVE</button>
-                            </div>
-                        </div>
-                    </form>
-                    <h4 th:if="${student==null}" class="text-center">
-                        STUDENT NOT FOUND
-                    </h4>
+                <div class="col-12">
+                    <label>Name:</label>
                 </div>
             </div>
-        </div>
+            <div class="row mt-2">
+                <div class="col-12">
+                    <input type="text" name="userName" class="form-control" th:value="${zayavky.userName}" required>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-12">
+                    <label>Course:</label>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-12">
+                    <input type="text" name="courseName" class="form-control"  th:value="${zayavky.courseName}" required>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-12">
+                    <label>Commentary:</label>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-12">
+                    <textarea name="commentary" cols="30" rows="10" th:value="${zayavky.commentary}"  required class="form-control"></textarea>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-12">
+                    <label>Phone:</label>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-12">
+                    <input type="text" name="phone" class="form-control" th:value="${zayavky.phone}" required>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-12">
+                    <button class="btn btn-success">Обработать заявку</button>
+                    <button type="button" class="btn btn-danger ms-2" data-toggle="modal" data-target="#deleteModal">Удалить заявку</button>
+                </div>
+            </div>
+        </form>
 
-    </body>
+        <!-- Modal -->
+        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" th:if="${zayavky!=null}">
+            <div class="modal-dialog" role="document">
+                <form th:action="@{/delete-application}" method="post">
+                    <input type="hidden" name="id" th:value="${zayavky.id}">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Confirm delete</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <h3 class="text-center">Are you sure?</h3>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">NO</button>
+                            <button class="btn btn-danger">Yes</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <h4 th:if="${zayavky==null}" class="text-center">
+            Application request not found!!!
+        </h4>
+    </div>
 </html>

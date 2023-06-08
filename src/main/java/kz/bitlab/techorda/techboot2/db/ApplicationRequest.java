@@ -10,10 +10,11 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Student {
+public class ApplicationRequest {
     private Long id;
-    private String name;
-    private String surname;
-    private int exam;
-    private String mark;
+    private String userName;
+    private String courseName;
+    private String commentary;
+    private String phone;
+    private boolean handled;
 }
